@@ -1,5 +1,5 @@
-def print_python() :
+def print_python():
     print("Учу Питон!")
 
 
-    print_python()
+print_python()
