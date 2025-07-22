@@ -1,30 +1,30 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeServise
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Используем хром как браузерный движок
 driver = webdriver.Chrome()
-
-try:
+wait = WebDriverWait(driver, 30)
     # Переход на страницу
-    driver.get("https://bonigarcia.dev/selenium-webdriver-java/loading-images.html")
+driver.get("https://bonigarcia.dev/selenium-webdriver-java/loading-images.html")
 
     # Ожидаем загрузки всей страницы и изображений
-    wait = WebDriverWait(driver, 10)
-    images = wait.until(
-        EC.presence_of_all_elements_located((By.TAG_NAME, "img"))
+element = wait.until(EC.text_to_be_present_in_element((By.ID, "Loading images"), "Done!"))
+images = wait.until(
+        EC.text_to_be_present_in_element((By.ID, "avard"))
     )
 
     # Берём третью картинку (учитывая индексацию с нуля)
-    third_image = images[0]
+third_image = images[2]
 
     # Получаем значение атрибута src
-    image_src = third_image.get_attribute("src")
+image_src = third_image.get_attribute("src")
 
     # Выводим результат в консоль
-    print(image_src)
+print(image_src)
 
-finally:
     # Завершаем сессию браузера
-    driver.quit()
+driver.quit()

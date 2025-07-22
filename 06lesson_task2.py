@@ -1,31 +1,25 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # Используем Chrome в качестве браузера (не забудьте установить chromedriver!)
 driver = webdriver.Chrome()
 
-try:
     # Перейти на нужную страницу
-    driver.get("http://uitestingplayground.com/textinput")
+driver.get("http://uitestingplayground.com/textinput")
 
-    # Найти input field и заполнить его значением "SkyPro"
-    input_field = driver.find_element(By.ID, "newButtonName")
-    input_field.send_keys("SkyPro")
+element = WebDriverWait (driver, 10).until(
+    EC.presence_of_element_located((By.ID, '#text'))
+    )
 
-    # Найти кнопку и кликнуть на неё
-    submit_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-    submit_button.click()
+input_field = driver.find_element(By.ID, "newButtonName")
+input_field.send_keys("SkyPro")
 
-    # Дождаться изменения текста на кнопке
-    time.sleep(1)  # Небольшая задержка для визуального подтверждения изменений
+submit_button = driver.find_element(By.XPATH, "//button[@type='submit']")
+submit_button.click()
 
-    # Найти обновлённую кнопку и получить её текст
-    updated_button_text = driver.find_element(By.XPATH, "//button[@id='updatingButton']").text
-    print(updated_button_text)  # Должно напечатать "SkyPro"
+updated_button_text = driver.find_element(By.XPATH, "//button[@id='updatingButton']").text
+print(updated_button_text)
 
-finally:
-    # Завершаем работу драйвера
-    driver.quit()
-    
+driver.quit()
