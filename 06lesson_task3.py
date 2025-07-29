@@ -16,16 +16,10 @@ element = wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#Loadin
 
 img_element = driver.find_element(By.CSS_SELECTOR, "#https://bonigarcia.dev/selenium-webdriver-java/img/award.png")
     
-    # Берём третью картинку (учитывая индексацию с нуля)
-wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#award")))
+    # Берём четвертую картинку с пейзажем
+wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#landscape")))
 
-third_img_src = img_element[2]
-
-print(driver.find_element(By.CSS_SELECTOR, "#award").get_dom_attribute("src"))
-
-#удаляем 
-driver.execute_script("arguments[0].removeAttribute('src');", third_img_src)
-
+print(driver.find_element(By.CSS_SELECTOR, "#landscape").get_dom_attribute("src"))
     # Завершаем сессию браузера
 driver.quit()
 
