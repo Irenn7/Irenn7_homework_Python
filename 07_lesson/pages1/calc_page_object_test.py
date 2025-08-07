@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+
 class MainPage:
 
     def __init__(self, browser):
@@ -30,3 +32,15 @@ class MainPage:
         return result
 
 
+
+
+def test_calculator():
+    browser = webdriver.Chrome()
+
+    main_page = MainPage(browser)
+    main_page.opening_delay(45)
+    main_page.calculator_buttons()
+    result = main_page.result_output_field()
+
+    assert result == True, "Результат 15 не появился после ожидания"
+    browser.quit()

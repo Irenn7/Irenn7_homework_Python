@@ -10,9 +10,11 @@ class AuthorizationPage:
 
 #найти поле ввода логина и пароля
     def search_input_field(self):
-        self._driver.find_element(By.CSS_SELECTOR, "user-name").send_keys("standard_user")
-        self._driver.find_element(By.CSS_SELECTOR, "password").send_keys("secret_sauce")
-        self._driver.find_element(By.CSS_SELECTOR, "login-button").click()
+        self._driver.find_element(By.ID, "user-name").send_keys("standard_user")
+        self._driver.find_element(By.ID, "password").send_keys("secret_sauce")
+        self._driver.find_element(By.NAME, "login-button").click()
+
+
 
 
 
