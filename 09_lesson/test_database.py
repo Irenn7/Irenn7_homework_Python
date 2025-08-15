@@ -11,7 +11,7 @@ def test_add_new_subject():
     connection = db.connect()
     sql = text("insert into subject(subject_id, subject_title)value (:id, :title)")
     connection.execute(sql, {"id":18, "title": "Geo"})
-    connection.commit()
+    connection.commit_prepared()
 
     # Проверяем наличие записи в таблице subjects
     result = connection.execute(text("select * from subject where subject_id = :id"),{"id:18"}).fetchone()
