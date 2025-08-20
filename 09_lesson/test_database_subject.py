@@ -2,7 +2,6 @@ from sqlalchemy.sql import text
 from database1 import db
 
 
-
 def test_add_new_subject():
     with db.connect() as connection:
         sql = text("insert into subject(subject_id, subject_title) values (:id, :title)")
