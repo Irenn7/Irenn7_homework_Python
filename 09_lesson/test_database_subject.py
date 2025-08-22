@@ -1,8 +1,5 @@
-from sqlalchemy import create_engine
-
 from sqlalchemy.sql import text
 from database1 import db
-
 
 
 def test_add_new_subject():
@@ -34,6 +31,8 @@ def test_delete_subject():
 
         result = connection.execute(text("select * from subject where subject_id = :id"), {"id":18}).fetchone()
         assert result is None
+
+
 
 
 
