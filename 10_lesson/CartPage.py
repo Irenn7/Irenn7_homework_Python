@@ -1,23 +1,15 @@
 from selenium.webdriver.common.by import By
-
+import allure
 
 class CartPage:
-    def __init__(self, browser):
-        self._driver = browser
-        """Конструктор класса корзина.
-         Параметры: - browser (WebDriver): Объект браузера Selenium.
+    def __init__(self, driver):
+        self.driver = driver
+        self.driver.get("https: // www.saucedemo.com")
 
-         Возвращаемое значение: None."""
-
-    @allure.step("Открытие страницы Корзина")
+    @allure.step("Открытие страницы корзины")
     def shopping_cart(self):
-        """Проверяет содержимое корзины,нажимает на кнопку,
-           параметры кнопки: строка - текст на кнопке, которую нужно нажать """
-        self._driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
+        """Метод открывает страницу корзины."""
+        self.driver.find_element(By.ID, "checkout").click()
 
-        """Метод открывает страницу корзины.
 
-        Параметры: Нет (кроме self).
-
-        Возвращаемое значение: None."""
 
