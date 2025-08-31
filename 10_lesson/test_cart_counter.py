@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from AuthorizationPage import AuthorizationPage
@@ -15,11 +15,10 @@ import pytest
 @allure.description("Проверяется правильная работа добавления товаров в корзину и расчет общей суммы.")
 @allure.feature("Корзина покупок")
 @allure.severity(allure.severity_level.NORMAL)
-
 @pytest.fixture
 def driver():
     """Фикстура для инициализации и закрытия драйвера."""
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Firefox()
     driver.maximize_window()
     yield driver
     driver.quit()
@@ -46,6 +45,7 @@ def test_cart_counter(driver):
         expected_total = "$58.29"  # Форматируйте ожидание аналогично факту
         assert actual_total == expected_total, (f"Ожидалось '{expected_total}',"
                                                 f" фактически получено '{actual_total}'")
+
 
 
 
