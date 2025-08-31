@@ -5,7 +5,7 @@ import allure
 class AuthorizationPage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 30)
+        self.wait = WebDriverWait(self.driver, 35)
         self.driver.get("https://www.saucedemo.com/")
 
     @allure.step("Заполнение полей авторизации")

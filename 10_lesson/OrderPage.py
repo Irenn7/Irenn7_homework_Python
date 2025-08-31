@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import allure
 
 class OrderPage:
@@ -16,7 +17,8 @@ class OrderPage:
 
     @allure.step("Проверка итоговой стоимости товаров")
     def total_cost(self):
-        total_element = self.driver.find_element(By.CLASS_NAME, "summary_total_label")
+        wait = WebDriverWait(self.driver, 10)
+        total_element = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "summary_total_label")))
         """Метод получает итоговую сумму заказа.
 
         Параметры: Нет (кроме self).
@@ -24,5 +26,4 @@ class OrderPage:
         Возвращаемое значение:
             - str: Итоговая сумма заказа, отображаемая на странице."""
         return total_element.text
-
 

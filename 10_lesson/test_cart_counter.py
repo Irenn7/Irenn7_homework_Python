@@ -41,8 +41,8 @@ def test_cart_counter(driver):
         order_page = OrderPage(driver)
         order_page.fill_form()
 
-        actual_total = order_page.total_cost()
-        expected_total = "$58.29"  # Форматируйте ожидание аналогично факту
+        expected_total = "$58.29"
+        actual_total = order_page.total_cost().split(":")[1].strip()
         assert actual_total == expected_total, (f"Ожидалось '{expected_total}',"
                                                 f" фактически получено '{actual_total}'")
 

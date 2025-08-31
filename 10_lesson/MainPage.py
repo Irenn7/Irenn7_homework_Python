@@ -25,3 +25,4 @@ class MainPage:
             self.add_to_cart_button.click()
 
 
+

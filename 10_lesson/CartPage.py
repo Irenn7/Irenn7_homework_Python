@@ -13,3 +13,4 @@ class CartPage:
         self.driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
         self.driver.find_element(By.ID, "checkout").click()
 
+
